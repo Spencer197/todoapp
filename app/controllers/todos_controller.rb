@@ -18,6 +18,20 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])#Finds a specific Todo entry.
   end
   
+  def edit
+    @todo = Todo.find(params[:id])
+  end
+  
+  def update
+   @todo = Todo.find(params[:id])#Creates a new Todo object.
+    if @todo.update(todo_params)#Saves/updates form input to the database. If successful,
+      flash[:notice] = "Todo was successfully updated."#Adds 'successful' flash message.
+      redirect_to todo_path(@todo)#Redirects input to the Todo show page.
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
   def todo_params# Adds 'strong parameters' which white lists the kinds of parameters (name, description) recieved from the Todo form.
