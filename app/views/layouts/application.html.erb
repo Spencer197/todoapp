@@ -9,12 +9,7 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg|#Iterates through a hash %>
-    <ul>
-      <li><%= msg %></li>
-    </ul>
-    <% end %>
-    Spencer's new website!
+    <%= render 'layouts/messages' %><%# References the _messages partial %>
     <%= yield %>
   </body>
 </html>

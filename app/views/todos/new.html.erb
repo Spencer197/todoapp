@@ -1,29 +1,3 @@
 <h1>Create a new Todo</h1>
 
-<% if @todo.errors.any? %><%#If there are any input errors in Todo form...%>
-<h2>The following error(s) prevented the Todo form input from being saved.</h2><%# display this messge and %>
-<ul>
-  <%@todo.errors.full_messages.each do |msg|%><%#list all the errors.%>
-    <li><%= msg %></li><%# Displays error messages%>
-  <% end %>
-</ul>
-
-<% end %>
-<%= form_for @todo do |f| %>
-<p>
-  <%= f.label :name %> <br><%# br tag arranges the label 'name' below the text field.%>
-  <%= f.text_field :name %>
-</p>
-
-<p>
-  <%= f.label :description %> <br>
-  <%= f.text_area :description %>
-</p>
-
-<p> 
-  <%= f.submit %><%# Creates a submit button.%>
-</p>
-
-<% end %>
-
-<%= link_to "Back to Todos listing", todos_path %>
+<%= render 'form' %><%# References the _form partial %>
