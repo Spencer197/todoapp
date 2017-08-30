@@ -32,6 +32,10 @@ class TodosController < ApplicationController
     end
   end
   
+  def index
+    @todos = Todo.all
+  end
+  
   private
   
   def todo_params# Adds 'strong parameters' which white lists the kinds of parameters (name, description) recieved from the Todo form.
