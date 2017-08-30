@@ -36,6 +36,13 @@ class TodosController < ApplicationController
     @todos = Todo.all
   end
   
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    flash[:notice] = "Todo was deleted successfully."
+    redirect_to todos_path
+  end
+  
   private
   
   def todo_params# Adds 'strong parameters' which white lists the kinds of parameters (name, description) recieved from the Todo form.

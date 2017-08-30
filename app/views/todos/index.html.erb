@@ -15,6 +15,7 @@
     <td><%=todo.description%></td>
     <td><%= link_to "Edit", edit_todo_path(todo) %></td><%#(todo) is the todo object which represents :id in the URI pattern of the route.%> 
     <td><%= link_to "Show", todo_path(todo) %></td>
+    <td><%= link_to "Delete", todo_path(todo), method: :delete, data: {confirm: "Are you sure?"} %></td><%# The last argument (data:...)is javascript.%>
   </tr>
   <%end%>
 </table>
