@@ -11,7 +11,7 @@ class TodosController < ApplicationController
       flash[:notice] = "Todo was created successfully."#Adds a flash message.
       redirect_to todo_path(@todo)# Redirects input to the Todo show page.
     else
-      render 'new'#Show the new temmplate again.
+      render 'new'#Show the new template again.
     end
   end
   

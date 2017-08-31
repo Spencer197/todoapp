@@ -9,12 +9,12 @@
 <% end %>
 <%= form_for @todo do |f| %>
   <p>
-<%= f.label :name %> <br><%# br tag arranges the label 'name' below the text field.%>
+<%= f.label :name %> <br><%# br tag arranges the label 'name' above the text field.%>
 <%= f.text_field :name %>
   </p>
 
   <p>
-<%= f.label :description %> <br>
+<%= f.label :description %> <br><%# br tag arranges the label 'name' above the text area.%>
 <%= f.text_area :description %>
   </p>
 
