@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 Git test: Cloud9 - 1
+
+Git test: Cloud9 - 2: reinitialized
