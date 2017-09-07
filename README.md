@@ -26,3 +26,5 @@ Git test: Cloud9 - 1
 Git test: Cloud9 - 2: reinitialized
 
 Git test: Cloud9 - 3
+
+Git test: Cloud9 - 4: reinitialized
