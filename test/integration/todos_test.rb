@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class RecipesTest < ActionDispatch::IntegrationTest
+class TodosTest < ActionDispatch::IntegrationTest
   
   def setup
-    @todo = Todo.create!(name: "Spencer", email: "spencer@example.com")
-    @todo = Recipe.create(todo_name: "My Big Plan", description: "I plan to do amazing things!", todo: @todo)
-    @todo2 = @todo.todos.build(todo_name: "My Other Big Plan", description: "I'm on my way to greatness!")
+    @user = User.create!(name: "Spencer", email: "spencer@example.com")
+    @todo = Todo.create(name: "My Big Plan", description: "I plan to do amazing things!", user: @user)
+    @todo2 = @user.todos.build(name: "My Other Big Plan", description: "I'm on my way to greatness!")
     @todo2.save 
   end
 
@@ -28,7 +28,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
     assert_template 'todos/show'
     assert_match @todo.name, response.body#Checks for recipe name in the body of show page.
     assert_match @todo.description, response.body#Checks for description
-    assert_match @user.name, response.body#Checks for chefname.
+    assert_match @user.name, response.body#Checks for user name.
     assert_match 'a[href=?]', edit_todo_path(@todo), text: "Edit this todo"
     assert_select 'a[href=?]', todo_path(@todo), text: "Delete this todo"
     assert_select 'a[href=?]', todos_path, text: "Return to todos listing"
@@ -40,7 +40,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
     name_of_todo = "my plan"
     description_of_todo = "Learn to play guitar, join a rock band, and become a rock star."
     assert_difference 'Todo.count', 1 do
-      post tods_path, params: { todo: {name: name_of_todo, description: description_of_todo}} 
+      post todos_path, params: { todo: {name: name_of_todo, description: description_of_todo}} 
     end
     follow_redirect!
     assert_match name_of_todo.capitalize, response.body
