@@ -1,11 +1,27 @@
-<h1>Showing a Todo.</h1>
+<%= render 'shared/page_title', title: @todo.name %><%#Passes @todo.name to partial for display.%>
 
-<p>
-  name: <%= @todo.name %>
-</p>
-
-<p>
-  description: <%= @todo.description %>
-</p>
-<%= link_to "Edit this Todo", edit_todo_path(@todo) %> |
-<%= link_to "Back to Todos listing",todos_path %>
+<div class="well col-md-8 col-md-offset-2">
+  <h4 class="center description"><strong>Steps: </strong></h4>
+  <hr /><%#Adds a line across the <h4> section%>
+  <%= simple_format(@todo.description) %><%#Displays todo in the format it was entered by user.%>
+  <hr />
+  <div class="pull-right">
+    <p class="center">
+      <em>Created by:</em><%#<em> = Italics%>
+    </p>
+    <p class="center">
+      <%= link_to gravatar_for(@todo.user), todos_path %>
+    </p>
+    <p class="center">
+      <small><%=@todo.user.name.titleize%></small>
+      <div class="pull-right"><%=time_ago_in_words(@todo.created_at)%> ago</div>
+    </p>
+  </div>
+  <div class="todo-actions">
+    <%= link_to "Edit this Todo", edit_todo_path(@todo),class: "btn btn-xs btn-warning" %><%#Creates an orange edit warning button%>
+    <%= link_to "Delete this Todo", todo_path(@todo), method: :delete,
+                                      data: { confirm: "Are you sure you want to delete this todo?" },
+                                      class: "btn btn-xs btn-danger" %>
+  <%= link_to "Return to Todo listing", todos_path, class: "btn btn-xs btn-primary" %>
+  </div>
+</div>

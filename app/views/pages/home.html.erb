@@ -1,3 +1,7 @@
-<h1>Hello World!</h1>
-
-<h2>This is a test.</h2>
+<%# This <div> tag adds a jumbotron with text inside.%>
+<div class="jumbotron center"><%# The addition of class 'center' centers the text in the jumbotron pairs with home.html, .center.erb%>
+<h1>Welcome to The Todos App!</h1>
+<h2>Where people share the things they plan to do!</h2>
+<h3>Stay current with people's latest plans <br>and see if they ever bring them to fruition!</h3><br><br>
+<p><%= link_to "View all Todos!", todos_path, class: "btn btn-danger btn-lg btn-xlarge" %></p>
+</div>

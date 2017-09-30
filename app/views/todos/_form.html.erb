@@ -1,27 +1,34 @@
-<% if @todo.errors.any? %><%#If there are any input errors in Todo form...%>
-  <h2>The following error(s) prevented the Todo form input from being saved.</h2><%# display this messge and %>
-  <ul>
-    <%@todo.errors.full_messages.each do |msg|%><%#list all the errors.%>
-      <li><%= msg %></li><%# Displays error messages%>
-<% end %>
-  </ul>
+<%= render 'shared/errors', obj: @todo %><%#'obj: @todo' passes in @todo to the _errors partial.%>
 
-<% end %>
-<%= form_for @todo do |f| %>
-  <p>
-<%= f.label :name %> <br><%# br tag arranges the label 'name' above the text field.%>
-<%= f.text_field :name %>
-  </p>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@todo, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :name %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, class: "form-control", placeholder: "Name of recipe", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :description %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Enter the steps of your Todo" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+          <%= f.submit class:"btn btn-primary btn-lg btn-xlarge" %>
+        </div>
+      </div>
+     
+   <%end%>
+   <div class="col-md-4 col-md-offset-4 colormatch">
+     [ <%= link_to "Cancel request and return to Todos listing", todos_path %> ]<%# The square brackets will display the contents of the embedded Ruby within square brackets.%>
+   </div>
+  </div>
+</div>
 
-  <p>
-<%= f.label :description %> <br><%# br tag arranges the label 'name' above the text area.%>
-<%= f.text_area :description %>
-  </p>
-
-  <p> 
-<%= f.submit %><%# Creates a submit button.%>
-  </p>
-
-<% end %>
-
-<%= link_to "Back to Todos listing", todos_path %>

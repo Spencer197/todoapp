@@ -8,7 +8,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)#Creates new Todo object.
     if@todo.save# Saves form input to the database.
-      flash[:notice] = "Todo was created successfully."#Adds a flash message.
+      flash[:success] = "Todo was created successfully."#Adds a flash message.
       redirect_to todo_path(@todo)# Redirects input to the Todo show page.
     else
       render 'new'#Show the new template again.
@@ -26,7 +26,7 @@ class TodosController < ApplicationController
   def update
     #See def set_todo under private
     if @todo.update(todo_params)#Saves/updates form input to the database. If successful,
-      flash[:notice] = "Todo was successfully updated."#Adds 'successful' flash message.
+      flash[:success] = "Todo was successfully updated."#Adds 'successful' flash message.
       redirect_to todo_path(@todo)#Redirects input to the Todo show page.
     else
       render 'edit'
@@ -34,7 +34,7 @@ class TodosController < ApplicationController
   end
   
   def index
-    @todos = Todo.all
+    @todos = Todo.all# *** Changed @todos to @todo ***  
   end
   
   def destroy

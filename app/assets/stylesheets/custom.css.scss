@@ -1,0 +1,94 @@
+//$navbar-default-bg: #ff7f00;// Sets color of navbar
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.center {
+  text-align: left;//Aligns the text of the home page to the left.
+}
+
+.container {
+  width: 1200px;
+}
+
+.jumbotron {
+  background-image: asset-url('plan3.jpg');
+  background-size: cover;
+  height: 600px;
+  margin-bottom: 5px;
+}
+
+#logo {//Sets style of "MYRECIPES" title in navbar.
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.jumbotron h1, h2 {
+  color: #065de8;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: left;
+  margin-bottom: 50px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.jumbotron h3 {
+  color: #065de8;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: left;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.btn-xlarge {
+color: rgb(255, 255, 255); font-size: 16px; line-height: 16px; padding: 6px; border-radius: 10px; font-family: Georgia,serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: 5px 5px 15px 5px rgb(0, 0, 0); border: 2px solid rgb(28, 110, 164); display: inline-block; margin-left: 2cm;}
+.btn-xlarge:hover {
+background: #1C6EA4; }
+.btn-xlarge:active {
+background: #144E75; }
+
+.row h3{
+  color: #ff7f00;
+  text-decoration: underline;
+  margin-top: 5px;
+}
+
+.col-md-12 {
+  text-align: center;
+}
+
+.description {
+  margin-top: 0;
+}
+
+.well a {
+  color: #065de8;
+}
+
+.user_info {
+  margin-top: 10px;
+}
+
+.colormatch a {
+  color: #065de8;
+}
+
+.todo-actions {
+  padding-top: 5px;
+  a {
+    color: #065de8;
+  }
+}
+
+
+
