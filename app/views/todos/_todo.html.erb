@@ -1,0 +1,19 @@
+<% obj.each do |todo| %><%# undefined method `each' for nil:NilClass %>
+  <div class= "row">
+    <div class="col-md-2">
+      <section class="user_info center">
+        <%= gravatar_for(todo.user, size: 120)%>
+      </section>
+    </div>
+    <div class="col-md-8 well">
+      <h4><%= link_to todo.name, todo_path(todo) %></h4><%#Displays todo's name%>
+      <p><%= truncate(todo.description, length: 150)%></p><%#Display todo's description%>
+      
+      <p>
+        <span class="quiet">Created <small><%= time_ago_in_words(todo.created_at) %></small></span><%#Displays how long ago todo was created%>
+      </p>
+      
+    </div>
+  </div>
+
+<% end %>

@@ -3,7 +3,8 @@ require 'test_helper'
 class TodoTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.create!(name: "Spencer", email: "spencer@example.com")#This line creates a user.
+    @user = User.create!(name: "Spencer", email: "spencer@example.com",
+                        password: "password", password_confirmation: "password")#These lines create a user with email & password.
     @todo = @user.todos.build(name: "My Big Plan", description: "This plan is awesome!")#Replaces line below to assign a user to a new todo. The build method automtically adds the user_id to the todo.
     #@todo = Todo.new(name: "My Big Plan", description: "This plan is awesome!")#Simply creates a new todo.
   end

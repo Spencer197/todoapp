@@ -3,7 +3,8 @@ require 'test_helper'
 class TodosTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = User.create!(name: "Spencer", email: "spencer@example.com")
+    @user = User.create!(name: "Spencer", email: "spencer@example.com",
+                        password: "password", password_confirmation: "password")
     @todo = Todo.create(name: "My Big Plan", description: "I plan to do amazing things!", user: @user)
     @todo2 = @user.todos.build(name: "My Other Big Plan", description: "I'm on my way to greatness!")
     @todo2.save 

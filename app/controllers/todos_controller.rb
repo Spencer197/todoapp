@@ -34,7 +34,7 @@ class TodosController < ApplicationController
   end
   
   def index
-    @todos = Todo.all# *** Changed @todos to @todo ***  
+    @todos = Todo.all
   end
   
   def destroy

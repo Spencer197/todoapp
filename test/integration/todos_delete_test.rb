@@ -2,7 +2,8 @@ require 'test_helper'
 
 class TodosDeleteTest < ActionDispatch::IntegrationTest
   def setup
-    @user = User.create!(name: "Spencer", email: "spencer@example.com")
+    @user = User.create!(name: "Spencer", email: "spencer@example.com",
+                        password: "password", password_confirmation: "password")
     @todo = Todo.create(name: "My Big Plan", description: "Learn to trade stocks and options, then retire a millionare before 30.", user: @user)
   end
   

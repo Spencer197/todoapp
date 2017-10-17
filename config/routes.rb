@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :todos
+  
+  get '/signup', to: 'users#new'
+  resources :users, except: [:new]#Makes an exception of 'new' so that it is replaced by 'signup'.
+  
 end
