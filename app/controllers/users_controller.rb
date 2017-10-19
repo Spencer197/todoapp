@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   
+  def index
+  @users = User.paginate(page: params[:page], per_page: 5)#Replaces former @users = User.all - Arranges users index data into 5 users per page.
+  end
+  
   def new
     @user = User.new
   end
@@ -15,7 +19,8 @@ class UsersController < ApplicationController
   end
   
   def show
-   @user = User.find(params[:id]) 
+   @user = User.find(params[:id])
+   @user_todos = @user.todos.paginate(page: params[:page], per_page: 5)#defines new instance var @user_todos & paginates user's data.
   end
   
   def edit

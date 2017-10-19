@@ -1,3 +1,9 @@
 <%= render 'shared/page_title', title: "showing all todos"%>
 
+<div align="center">
+  <%= will_paginate %>
+</div>
 <%= render 'todo', obj: @todos %><%#Renders the _todo partial.%>
+<div align="center">
+  <%= will_paginate %>
+</div>

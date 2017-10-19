@@ -1,6 +1,15 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
   
+  def index
+    @todos = Todo.paginate(page: params[:page], per_page: 5)
+    #@todos = Todo.all - Replaced by the line above.
+  end
+  
+  def show
+    #See def set_todo under private
+  end
+  
   def new
     @todo = Todo.new
   end
@@ -15,10 +24,6 @@ class TodosController < ApplicationController
     end
   end
   
-  def show
-    #See def set_todo under private
-  end
-  
   def edit
     #See def set_todo under private
   end
@@ -31,10 +36,6 @@ class TodosController < ApplicationController
     else
       render 'edit'
     end
-  end
-  
-  def index
-    @todos = Todo.all
   end
   
   def destroy

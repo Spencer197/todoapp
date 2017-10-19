@@ -6,4 +6,10 @@
 </div>
 
 <h4 align="center"><%= @user.name %></h4><%#Shows user's name under Gravatar image.%>
-<%= render 'todos/todo', obj: @user.todos %><%# Renders _todos.html.erb partial using its path, then defines the object to be used to render a user's todos. %>
+<div align="center">
+  <%= will_paginate @user_todos %><%# Calls will_paginate method for users index data. Adds page selector at top of page.%>
+</div>
+<%= render 'todos/todo', obj: @user_todos %><%# Renders _todo.html.erb partial using its path, then defines the object to be used to render a user's todos. %>
+<div align="center">
+  <%= will_paginate @user_todos %><%# Calls will_paginate method for todos index data. Adds page selector at top of page.%>
+</div>
