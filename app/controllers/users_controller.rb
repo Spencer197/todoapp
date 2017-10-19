@@ -36,6 +36,13 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def destroy
+    @user = User.find(params[:id])#Find the chef to be deleted.
+    @user.destroy#Destroy/delete the selected user
+    flash[:danger] = "User & all associated todos have been deleted!"#Display a flash message
+    redirect_to users_path#Return to the users listing.
+  end
 
   private
   

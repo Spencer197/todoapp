@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   resources :todos
   
-  get '/signup', to: 'users#new'
+  get '/signup', to: 'users#new'#This line directs the '/signup' route to the user controller, new action rather than the new route.
   resources :users, except: [:new]#Makes an exception of 'new' so that it is replaced by 'signup'.
   
+  get '/login', to: 'sessions#new'#Goes to sessions controller, new action.
+  post '/login', to: 'sessions#create'#This will submit/post the login new session form to the sessions controller, create action.
+  delete '/logout', to: 'sessions#destroy'#This goes down the logout path to the sessions controller, destroy action.
 end

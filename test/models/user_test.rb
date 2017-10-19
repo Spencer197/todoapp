@@ -70,5 +70,13 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "x" * 4
     assert_not @user.valid?
   end
+  
+  test "Associated recipes should be destroyed" do
+    @user.save#Associates an id with the user
+    @user.todos.create!(name: "testing destroy", description: "Testing destroy function")#Enters todos' names & descriptions into db.
+    assert_difference 'Todo.count', -1 do
+      @user.destroy
+    end
+  end
 end
     
