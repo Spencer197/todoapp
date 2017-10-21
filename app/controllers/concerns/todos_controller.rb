@@ -16,6 +16,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)#Creates new Todo object.
+    @todo.user = current_user# Replaces: @todo.user = User.first - Assigns current_user as creator of a todo.
     if@todo.save# Saves form input to the database.
       flash[:success] = "Todo was created successfully."#Adds a flash message.
       redirect_to todo_path(@todo)# Redirects input to the Todo show page.
@@ -53,6 +54,13 @@ class TodosController < ApplicationController
   
   def todo_params# Adds 'strong parameters' which white lists the kinds of parameters (name, description) recieved from the Todo form.
     params.require(:todo).permit(:name, :description)
+  end
+  
+  def require_same_user
+    if current_user != @todo.user and !current_user.admin?
+      flash[:danger] = "You can only edit and delete your own recipes."
+      redirect_to todos_path
+    end
   end
 
 end

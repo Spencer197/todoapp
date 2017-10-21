@@ -8,6 +8,7 @@ class TodosDeleteTest < ActionDispatch::IntegrationTest
   end
   
   test "successfully delete a todo" do
+    sign_in_as(@user, "password")
     get todo_path(@todo)#Go to show todos page.
     assert_template 'todos/show'#Check that show page is displayed.
     assert_select 'a[href=?]', todo_path(@todo), text: "Delete this Todo"#Checks that 'Delete' button appears in show todos page.

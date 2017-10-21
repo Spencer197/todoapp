@@ -25,6 +25,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
   
   test "should get todos show page" do
+    sign_in_as(@user, "password")
     get todo_path(@todo)
     assert_template 'todos/show'
     assert_match @todo.name, response.body#Checks for recipe name in the body of show page.
@@ -36,6 +37,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test "create new valid todo" do
+    sign_in_as(@user, "password")#Signs in a test user before running test.
     get new_todo_path
     assert_template 'todos/new'
     name_of_todo = "my plan"

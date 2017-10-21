@@ -9,8 +9,10 @@
           <li><%= link_to gravatar_for(user), user_path(user) %></li>
           <li class="user-title"><%= link_to user.name.titleize, user_path(user) %></li>
     <li><small><%= pluralize(user.todos.count, "todo") if user.todos %></small></li>
+    <% if logged_in? && current_user.admin? && !user.admin? %><%# Enables logged in chef and admin to delete the chef's account.  But admin cannot delete his own account.%>
       <li><%= link_to "Delete this user", user_path(user), method: :delete,
                 data: {confirm: "Are you sure you want to delete this user and all associated recipes?"} %></li>
+          <% end %>
         </div>
       </div>
     </ul>      

@@ -7,6 +7,8 @@ class UsersListingTest < ActionDispatch::IntegrationTest
                     password: "password", password_confirmation: "password")
     @user2 = User.create!(name: "john", email: "john@example.com",
                     password: "password", password_confirmation: "password")
+    @admin_user = User.create!(name: "John1", email: "john1@example.com",
+                         password: "password", password_confirmation: "password", admin: true)
   end
   
   test "should get users listing" do
@@ -21,7 +23,7 @@ class UsersListingTest < ActionDispatch::IntegrationTest
     get users_path
     assert_template 'users/index'
     assert_difference 'User.count', -1 do
-      delete user_path(@user2)#Deletes user2 
+      delete user_path(@user2)#@admin_user deletes user2 
     end
     assert_redirected_to users_path
     assert_not flash.empty?

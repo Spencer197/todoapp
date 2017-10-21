@@ -31,5 +31,4 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user)#checks that there is a chef show page path
     assert_select "a[href=?]", edit_chef_path(@user)#Checks that there is a path to edit chef's profile.
   end
- 
 end
