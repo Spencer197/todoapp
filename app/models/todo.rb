@@ -7,4 +7,5 @@ class Todo < ApplicationRecord#differs from Rails 4: < ActiveRecord::Base
   default_scope -> { order(updated_at: :desc) }#Arranges recipes in order from newest to oldest.
   has_many :todo_factors
   has_many :factors, through: :todo_factors
+  has_many :comments, dependent: :destroy
 end

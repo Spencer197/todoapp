@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :todos, dependent: :destroy#Asserts that User class can have many todos associated with it. "dependent: :destroy" ensure that all of a user's todos are destroyed with the user.
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
+  has_many :comments, dependent: :destroy
 end
