@@ -8,9 +8,11 @@
     <div class="col-md-8 well">
       <h4><%= link_to todo.name, todo_path(todo) %></h4><%#Displays todo's name%>
       <p><%= truncate(todo.description, length: 150)%></p><%#Display todo's description%>
-      
+      <% if todo.factors.any? %>
+        <p>Factors: <%= render todo.factors %></p><%#Calls the ingredients partial which lists the factors.%>
+      <% end %>      
       <p>
-        <span class="quiet">Created <small><%= time_ago_in_words(todo.created_at) %></small></span><%#Displays how long ago todo was created%>
+        <span class="quiet">Created <small><%= time_ago_in_words(todo.created_at) %> ago by <%= todo.user.name.titleize %></small></span><%#Displays how long ago todo was created%>
       </p>
       <% if logged_in? && (current_user == todo.user || current_user.admin?) %><%#The @todo in the Edit & Delete variable had to be changed to 'todo'.%>
         <div class="todo-actions">

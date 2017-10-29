@@ -10,7 +10,7 @@
       <em>Created by:</em><%#<em> = Italics%>
     </p>
     <p class="center">
-      <%= link_to gravatar_for(@todo.user), todos_path %>
+      <%= link_to gravatar_for(@todo.user), user_path(@todo.user) %><%#Creates link from Gravatar image to user's profile page.
     </p>
     <p class="center">
       <small><%=@todo.user.name.titleize%></small>

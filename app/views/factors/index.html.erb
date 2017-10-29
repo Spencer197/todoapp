@@ -1,0 +1,21 @@
+<%= render 'shared/page_title', title: "Available Factors" %>
+
+<div align="center">
+  <%= will_paginate %>
+  <% @factors.each do |fac| %>
+    <ul class="listing">
+      <div class="row">
+        <div class="well col-md-4 col-md-offset-4">
+          <li class="user-title"><%= link_to fac.name.capitalize, 
+                                          factor_path(fac) %></li>
+  <li><small><%= pluralize(fac.todos.count, "todo") if fac.todos %>
+                                                          </small></li>
+          <% if logged_in? && current_user.admin? %>
+            <li><%= link_to "Edit this factor", edit_factor_path(fac) %></li>
+          <% end %>
+        </div>
+      </div>
+    </ul>
+  <% end %>
+  <%= will_paginate %>
+</div>

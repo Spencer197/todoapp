@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'#Goes to sessions controller, new action.
   post '/login', to: 'sessions#create'#This will submit/post the login new session form to the sessions controller, create action.
   delete '/logout', to: 'sessions#destroy'#This goes down the logout path to the sessions controller, destroy action.
+  
+  resources :factors, except: [:destroy]
 end
