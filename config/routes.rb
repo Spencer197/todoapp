@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get '/help', to: 'pages#help'#Get the '/help' route and send it to the pages controller, help action.
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :todos
+  resources :todos do
+    resources :comments, only: [:create]# A nested route that provides the route for creating comments.
+  end
   
   get '/signup', to: 'users#new'#This line directs the '/signup' route to the user controller, new action rather than the new route.
   resources :users, except: [:new]#Makes an exception of 'new' so that it is replaced by 'signup'.
@@ -16,4 +18,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'#This goes down the logout path to the sessions controller, destroy action.
   
   resources :factors, except: [:destroy]
+
 end

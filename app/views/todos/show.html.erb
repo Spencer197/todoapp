@@ -5,12 +5,15 @@
   <hr /><%#Adds a line across the <h4> section%>
   <%= simple_format(@todo.description) %><%#Displays todo in the format it was entered by user.%>
   <hr />
-  <div class="pull-right">
+    <% if @todo.factors.any? %><%#This loop displays the factors links under each todo in each todo's show page.%>
+      <p>Factors: <%= render @todo.factors %></p>
+    <% end %>
+    <div class="pull-right">
     <p class="center">
       <em>Created by:</em><%#<em> = Italics%>
     </p>
     <p class="center">
-      <%= link_to gravatar_for(@todo.user), user_path(@todo.user) %><%#Creates link from Gravatar image to user's profile page.
+      <%= link_to gravatar_for(@todo.user), user_path(@todo.user) %><%#Creates link from Gravatar image to user's profile page.%>
     </p>
     <p class="center">
       <small><%=@todo.user.name.titleize%></small>
@@ -27,3 +30,45 @@
   <%= link_to "Return to Todo listing", todos_path, class: "btn btn-xs btn-primary" %>
   </div>
 </div>
+
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Comments: </h3>
+      <hr />
+      <%= form_for([@todo, @comment], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <div class="form-group">
+          <div class="control-label col-md-2">
+            <%= f.label :description, "Comment" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_area :description, rows: 8, class: "form-control", placeholder: "Enter Comment Here" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <%= f.submit "Submit Comment", class: "btn btn-primary btn-lg btn-xlarge" %>
+          </div>
+        </div>
+      <% end %>
+      <hr />
+    </div>
+  </div>
+<% end %>
+
+<% if @todo.comments != 0 %><%# Renders a list of comments at the bottom of the page.%>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Prior Comments: </h3>
+        <div id="messages">
+          <%= render partial: 'comments/comments', object: @comments %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>No Comments Yet!</h3>
+    </div>
+  </div>
+<% end %>

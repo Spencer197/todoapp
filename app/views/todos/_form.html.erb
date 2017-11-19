@@ -19,6 +19,15 @@
           <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Enter the steps of your Todo" %>
         </div>
       </div>
+      <div class="form-group"><%#This block renders the factor checkboxes in the factor edit view. %> 
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <%= f.collection_check_boxes :factor_ids, Factor.all, :id, :name do |cb| %>
+              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <div class="col-md-offset-2 col-md-8">
           <%= f.submit class:"btn btn-primary btn-lg btn-xlarge" %>

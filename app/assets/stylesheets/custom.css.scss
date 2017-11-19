@@ -105,5 +105,9 @@ background: #144E75; }
   text-align: center;
 }
 
+.input_checkbox input {
+  width: auto !important;
+}// Enables the checkboxes to work on MS Windows systems.
+
 
 

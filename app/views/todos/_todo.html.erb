@@ -9,10 +9,11 @@
       <h4><%= link_to todo.name, todo_path(todo) %></h4><%#Displays todo's name%>
       <p><%= truncate(todo.description, length: 150)%></p><%#Display todo's description%>
       <% if todo.factors.any? %>
-        <p>Factors: <%= render todo.factors %></p><%#Calls the ingredients partial which lists the factors.%>
+        <p>Factors: <%= render todo.factors %></p><%#Calls the _factors partial which lists the factors.%>
       <% end %>      
       <p>
-        <span class="quiet">Created <small><%= time_ago_in_words(todo.created_at) %> ago by <%= todo.user.name.titleize %></small></span><%#Displays how long ago todo was created%>
+        <span class="quiet">Created <small><%= time_ago_in_words(todo.created_at) %> ago by <%= todo.user.name.titleize %><%#Displays how long ago todo was created%>
+                                                          | <%= pluralize(todo.comments.count, 'Comment') %></small></span><%#Displays the number of comments for a todo with pluralization.%>
       </p>
       <% if logged_in? && (current_user == todo.user || current_user.admin?) %><%#The @todo in the Edit & Delete variable had to be changed to 'todo'.%>
         <div class="todo-actions">
@@ -21,9 +22,7 @@
                                         data: { confirm: "Are you sure you want to delete this todo?" },
                                         class: "btn btn-xs btn-danger" %>
         </div>
-      
       <% end %>
     </div>
   </div>
-
 <% end %>

@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
     @todos = Todo.paginate(page: params[:page], per_page: 5)
@@ -8,6 +10,8 @@ class TodosController < ApplicationController
   
   def show
     #See def set_todo under private
+    @comment = Comment.new
+    @comments = @todo.comments.paginate(page: params[:page], per_page: 5)
   end
   
   def new
@@ -42,7 +46,7 @@ class TodosController < ApplicationController
   def destroy
     #See def set_todo under private
     @todo.destroy
-    flash[:notice] = "Todo was deleted successfully."
+    flash[:success] = "Todo was deleted successfully."
     redirect_to todos_path
   end
   
@@ -53,7 +57,7 @@ class TodosController < ApplicationController
   end
   
   def todo_params# Adds 'strong parameters' which white lists the kinds of parameters (name, description) recieved from the Todo form.
-    params.require(:todo).permit(:name, :description)
+    params.require(:todo).permit(:name, :description, factor_ids:[])
   end
   
   def require_same_user
@@ -62,5 +66,4 @@ class TodosController < ApplicationController
       redirect_to todos_path
     end
   end
-
 end
