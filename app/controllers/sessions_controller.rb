@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)#Finds user by email.
   if user && user.authenticate(params[:session][:password])
     session[:user_id] = user.id
+    cookies.signed[:user_id] = user.id#Saves the encrypted user_id in the cookies; not just in the session hash only.
     flash[:success] = "You have successfully logged in."
     redirect_to user
   else

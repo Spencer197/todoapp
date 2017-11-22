@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:use_id] = @user.id#Logs in a new user as soon as he/she signs up for a new account.
+      session[:user_id] = @user.id#Logs in a new user as soon as he/she signs up for a new account.
+      cookies.signed[:user_id] = @user.id#Stores user_id in cookies.
       flash[:success] = "Welcome #{@user.name} to Todos App!"
       redirect_to user_path(@user)
     else

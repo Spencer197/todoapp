@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'#This goes down the logout path to the sessions controller, destroy action.
   
   resources :factors, except: [:destroy]
+  
+  mount ActionCable.server => '/cable'
 
 end
